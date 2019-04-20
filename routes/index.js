@@ -1,46 +1,143 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(io) {
+  var express = require("express");
+  var router = express.Router();
 
-let landing = require('../controllers/landing');
-/* GET home page. */
-router.get('/', landing.get_landing);
-router.post('/', landing.submit_lead);
+  /*************** CONTROLLER *****************/
+  let general = require("../controllers/general");
+  let admins = require("../controllers/admins");
+  let user = require("../controllers/user"); // to direct them to login page!
 
-// create a new route
-router.get('/leads',landing.show_leads);
-router.get('/lead/:lead_id/', landing.show_lead);    // using : defines it as a parameter. whatever route assigned to :lead_id from landing.pug will be stored in lead_id
-/* get shows the form to edit, post submits the form to edit the lead_id */
+  /*************** MIDDLEWARE *****************/
+  let { isLoggedIn, isVerified, hasAuth, whatRights } = require("../middleware/hasAuth");
+  let { send_email } = require("../middleware/email");
+  let { any_admin_rtchat } = require("../middleware/any_admin_rtchat");
+  let { specific_admin_rtchat} = require("../middleware/specific_admin_rtchat");
+  /*************** REAL TIME CHAT DEPENDENCIES *****************/
+  /**
+   * Use the gravatar module, to turn email addresses into avatar images:
+   * for REAL TIME CHAT
+   * */
+  let rtchat = require("../controllers/chat");
 
-/* Notice that the get and post are from the same URL its so that the handler can handle both requests */
-/********* ADD ROW TO leads TABLE *************/
-router.get('/lead/:lead_id/edit', landing.show_edit_lead);    // using : defines it as a parameter, defined by landing.show_edit_lead
-router.post('/lead/:lead_id/edit', landing.edit_lead);      
+  /*************** HOMEPAGE *****************/
+  router.get("/", general.get_welcome);
+  router.get("/consultant", general.get_consultantpage);
+  /*************** GENERAL TICKET ROUTES *****************/
+  router.get(
+    "/my_tickets/:user_id/0",
+    isLoggedIn,
+    isVerified,
+    general.show_my_tickets_queued
+  ); // user page -- display all queued tickets
+  router.get(
+    "/my_tickets/:user_id/1",
+    isLoggedIn,
+    isVerified,
+    general.show_my_tickets_inprogress
+  ); // user page -- display all in-progress tickets
+  router.get(
+    "/my_tickets/:user_id/2",
+    isLoggedIn,
+    isVerified,
+    general.show_my_tickets_solved
+  ); // user page -- display all solved tickets
+  router.get(
+    "/my_tickets/:user_id/:ticket_id",
+    isLoggedIn,
+    isVerified,
+    general.show_edit_ticket
+  ); // user making edit to his/her tickets
+  router.post(
+    "/my_tickets/:user_id/:ticket_id",
+    isLoggedIn,
+    isVerified,
+    general.edit_ticket
+  );
+  
 
-/********* DELETE ROW FROM leads TABLE *************/
-router.post('/lead/:lead_id/delete', landing.delete_lead);
-// different ways to do delete. NOTICE THAT WE DID NOT router.get()! This is unncessary if we are using JSON --> jQuery w/ AJAX because these are done in background
-router.post('/lead/:lead_id/delete-json', landing.delete_lead_json);
+  /*************** TICKET CREATION ROUTES *****************/
+  router.get("/ticket_form/basics", isLoggedIn, isVerified, general.basics_get); // basics
+  router.post("/ticket_form/basics", isLoggedIn, isVerified, general.basics_post);
+  router.get("/ticket_form/solutions", isLoggedIn, isVerified, general.solutions_get);
+  router.get("/ticket_form/details", isLoggedIn, isVerified, general.details_get);
+  router.post("/ticket_form/details", isLoggedIn, isVerified, send_email, general.details_post);
+  router.get("/solution_detail", isLoggedIn, isVerified, general.solution_detail);
 
-module.exports = router;
+  /*************** ADMIN ROUTES *****************/
+  router.get("/tickets", whatRights); // if user is not logged in, redirect to signup page, else admin/user tickets page
+  router.get("/tickets/:user_id/0",isLoggedIn, isVerified, hasAuth, admins.show_tickets_queued); // admin page -- display all queued tickets
+  router.get("/tickets/:user_id/1", isLoggedIn, isVerified, hasAuth, admins.show_tickets_inprogress ); // admin page -- display all in-progress tickets
+  router.get("/tickets/:user_id/2", isLoggedIn, isVerified, hasAuth, admins.show_tickets_solved ); // admin page -- display all solved tickets
+  router.get("/tickets/:user_id/:ticket_id/", isLoggedIn, isVerified, hasAuth, admins.show_ticket_messages ); // respond to ticket
+  router.post("/tickets/:user_id/:ticket_id/", isLoggedIn, isVerified, hasAuth, admins.post_message );
+
+  /********* DELETE ROW FROM tickets TABLE *************/
+  router.post("/ticket/:ticket_id/delete", admins.delete_ticket); // using post and different route
+  router.post("/ticket/:ticket_id/delete-json", admins.delete_ticket_json); // using ajax
+
+  /***************************
+   * REAL TIME CHAT ROUTE
+   *  ************************/
+  // this is changed
+  router.get("/room", rtchat.room);
+  router.get("/create", rtchat.create);
+  router.get("/chat/:id", rtchat.chat);
+  router.get('/select', rtchat.select);
+  router.get('/chat/admin/:admin_id', specific_admin_rtchat, rtchat.chat_with_specific_admin);
+  router.get('/chat/all_admin/:user_id', any_admin_rtchat, rtchat.all_admin_redirect); // todo: add middle ware to send email here
+  router.get('/chat/user/:user_id', rtchat.chat_with_any_admin);
 
 
+  /*************** UPLOAD IMAGES *****************/
+  var multer = require("multer");
+  var path = require("path");
+  var fs = require("fs");
 
-/**************** THE FLOW OF HOW THINGS WORK *******************/
-/**
- * 1. app.js starts up the webapp backend
- * 2. Loads the '/' framework through var indexRouter = requires('routes/landing.js')
- * 3. (a) landing.js looks at current URL and router.get('<URL branches>', function), whereby function is being sorted out in controllers/landing.js
- * 3. (b) the landing.(method) is accomplished by `let landing = require('../controllers/landing')` which allows us to call the methods found in that file
- * 3. (c) this allows us to know at which `branch` will certain method perform certain action
- * 
- * 4. [a]some of the methods in landing.js will render the page according to the pug files found in views folder through res.render('`filename in views folder`', { 'key' : value } )
- * 4. [b] the 2nd argument in res.render('`filename in views folder`', { 'key' : value } ) because it allows the pug file to obtain a value from 'key' and display it on the webpage
- * 4. [c] we also use function(res, req, next) {} to perform ASYNC task.
- * 4. [d] models is a class obtain through var models = require('../models')
- * 4. [e] models.lead <-- telling it to look at the leads table
- * 4. [f] models.lead.create <-- telling the method to CREATE a ROW to leads TABLE with email: `<name of email>` value
- * 4. [g] models.lead.findAll() <-- telling the method to SELECT * FROM leads; --> as it is an ASYNC Task, it will keep returning the next value to landing.pug
- * 4. [h] models.lead.destroy() <-- telling the method to DESTROY `<id>` FROM leads;
- *          DELETE FROM "leads" WHERE "id" = '0cdbc929-1b18-40fe-9937-a06cf2782334'
- * 4. [i] res.redirect('<url page>') --> as the name suggest, redirects page.
- */
+  var storage = multer.diskStorage({
+    destination: function(req, file, cb, res) {
+      cb(
+        null,
+        "public/users/" + req.user.userId + "/tickets/" + req.user.ticketCount
+      );
+    },
+
+    filename: function(req, file, cb, res) {
+      var name =
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname);
+      cb(null, name);
+
+      return name;
+    }
+  });
+  var upload = multer({
+    storage: storage
+  });
+
+  function checkUploadPath(req, res, next) {
+    const uploadPath =
+      "public/users/" + req.user.userId + "/tickets/" + req.user.ticketCount;
+    fs.exists(uploadPath, function(exists) {
+      if (exists) {
+        return next();
+      } else {
+        fs.mkdir(uploadPath, { recursive: true }, function(err) {
+          if (err) {
+            console.log("Error in folder creation: \n" + err);
+            return next();
+          }
+          return next();
+        });
+      }
+    });
+  }
+
+  router.post("/upload", checkUploadPath, upload.single("file"), function(req, res) {
+    res.json({
+      location:
+        "users/" + req.user.userId + "/tickets/" + req.user.ticketCount + "/" + req.file.filename
+    });
+  });
+
+  
+  return router;
+};

@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+  include ../common/header.pug
+  +header("Ticket")
+  body
+    header
+      include ../common/navbar.pug
+      +navbar(user)
+      .container0-fluid
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            h1.display-4.m-b-2 ticket
+            - let topics = ["API Dev Ops", "Chat as a service", "recruitment Platform", "Aesop", "Travel market space", "Banking App", "AR car visualizer"];
+            form(action='/my_tickets/' + user.userId + '/' + ticket.ticketId, method='POST' ,id=ticket.ticketId)
+              div.form-group
+                label(for='Topic') Topic: 
+                select(name='topic')
+                  each topic in topics
+                    option#topic.form-control(value=topic) #{topic}
+              div.form-group
+                label(for='description') Description:
+                textarea#description.form-control(name='description',type='text', placeholder='max 4000 chars',maxlength=4000, wrap="soft") #{ticket.description}
+              div.form-group
+                label(for='responses') Dev's Response:
+                input#responses.form-control(type='responses', placeholder="Admin's responses here!", name='responses', value=ticket.responses, readonly="readonly")  
+              button.btn.btn-primary(type='submit') Submit
+
+
+    include ../common/footer.pug
+    +footer()
+    script(src="../javascripts/tickets.js")
+
+

@@ -3,26 +3,32 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
-var debug = require('debug')('myapp:server');
+var express = require('express');
+var app = express();
 var http = require('http');
+/**
+ * Create HTTP server.
+ */
+var server = http.createServer(app);
+
+// added for real time chat
+var io = require('socket.io').listen(server);
+var app = require('../app')(app, io);
+var debug = require('debug')('myapp:server');
+require('../chat')(io);
 
 // initializing sequelize
 let models = require('../models');
+
+
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || 3000);
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.

@@ -1,0 +1,53 @@
+doctype html
+html(lang='en')
+  include ../../common/header.pug
+  +header(title)
+  body
+    header
+      include ../../common/navbar.pug
+      +navbar(user)
+      .container
+        .row.align-items-center
+          .col-md-8.order-md-1.text-center.text-md-left.pr-md-5
+            - let topics = ["Python", "C++", "Java", "Go", "Android Studio", "Javascript", "C"];
+            h1.display-7.m-b-2 Ticket Form
+
+            // register form
+            form(action='/ticket_form/details',method='POST' )
+              div.form-group
+                label(for='name') First Name:
+                input#name.form-control(type='text', placeholder='e.g. David', name='firstName', value=user.firstName, readonly)
+              div.form-group
+                label(for='name') Last Name:
+                input#name.form-control(type='text', placeholder='e.g. Beckham', name='lastName', value=user.lastName, readonly)
+              div.form-group
+                label(for='email') Email:
+                input#email.form-control(type='email', placeholder='name@email.com', name='email', value=user.email, readonly)
+              div.form-group
+                label(for='phoneNumber') Phone Number:
+                input#phoneNumber.form-control(type='text', placeholder='e.g. 91234567' name='phoneNumber', value=user.phoneNumber, readonly)
+              div.form-check
+                input#priority.form-check-input(type='checkbox', name='priority')
+                label(for='priority') <em>Bugs found?</em>
+              div.form-group
+                label(for='topic') Topics:
+                select(class = 'form-control' name='topic')
+                  each topic in topics
+                    option#topic.form-control(value=topic) #{topic}
+                br
+
+                label(for='priority') Subject:
+                input#title.form-control(type='text', placeholder='Give a very short summary! (i.e. about Python class)' name='title')
+              div.form-group
+                label(for='content') Description:
+                textarea#content.form-control(name='content', placeholder="Be specific an succinct about the description of your problem!")
+                
+              button.btn.btn-outline-dark(type='submit') Submit
+
+
+
+    include ../../common/footer.pug
+    +footer()
+    //- script(src="../javascripts/tickets.js")
+
+

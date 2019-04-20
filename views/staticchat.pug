@@ -1,0 +1,53 @@
+.container-fluid
+        link(rel="stylesheet" href="/public/stylesheet/chatstyle.css")
+        // jQuery first, then Popper.js, then Bootstrap JS
+        script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1-beta.3/js/bootstrap.min.js' integrity='sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4' crossorigin='anonymous')
+       
+        .jumbotron.m-0.p-0.bg-transparent
+            .row.m-0.p-0.position-relative
+                .col-12.p-0.m-0.position-absolute(style='right: 0px;')
+                .card.border-0.rounded(style='box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 6px 10px 0 rgba(0, 0, 0, 0.01); overflow: hidden; height: 100vh;')
+                    .card-header.p-1.bg-light.border.border-top-0.border-left-0.border-right-0(style='color: rgba(96, 125, 139,1.0);')
+                    img.rounded.float-left(style='width: 50px; height: 50px;' src='https://i.pinimg.com/736x/5c/24/69/5c24695df36eee73abfbdd8274085ecd--cute-anime-guys-anime-boys.jpg')
+                    h6.float-left(style='margin: 0px; margin-left: 10px;')
+                        | Yusuf Bulgurcu 
+                        i.fa.fa-check.text-primary(title='Onaylanmış Hesap!' aria-hidden='true')
+                        br
+                        small  &Idot;stanbul, TR 
+                    .dropdown.show
+                        a#dropdownMenuLink.btn.btn-sm.float-right.text-secondary(data-toggle='dropdown' role='button')
+                        h5
+                            i.fa.fa-ellipsis-h(title='Ayarlar!' aria-hidden='true')
+                        .dropdown-menu.dropdown-menu-right.border.p-0(aria-labelledby='dropdownMenuLink')
+                        a.dropdown-item.p-2.text-secondary(href='#')
+                            i.fa.fa-user.m-1(aria-hidden='true')
+                            |  Profile
+                        hr.my-1
+                        a.dropdown-item.p-2.text-secondary(href='#')
+                            i.fa.fa-trash.m-1(aria-hidden='true')
+                            |  Delete
+                    .card.bg-sohbet.border-0.m-0.p-0(style='height: 100vh;')
+                    #sohbet.card.border-0.m-0.p-0.position-relative.bg-transparent(style='overflow-y: auto; height: 100vh;')
+                        .balon1.p-2.m-0.position-relative(data-is='You - 3:20 pm')
+                        a.float-right  Hey there! What&apos;s up? 
+                        .balon2.p-2.m-0.position-relative(data-is='Yusuf - 3:22 pm')
+                        a.float-left.sohbet2  Checking out iOS7 you know.. 
+                        .balon1.p-2.m-0.position-relative(data-is='You - 3:23 pm')
+                        a.float-right  Check out this bubble! 
+                        .balon2.p-2.m-0.position-relative(data-is='Yusuf - 3:26 pm')
+                        a.float-left.sohbet2  It&apos;s pretty cool! 
+                        .balon1.p-2.m-0.position-relative(data-is='You - 3:28 pm')
+                        a.float-right  Yeah it&apos;s pure CSS &amp; HTML 
+                        .balon2.p-2.m-0.position-relative(data-is='Yusuf - 3:33 pm')
+                        a.float-left.sohbet2
+                            | Wow that&apos;s impressive. But what&apos;s even more impressive is that this bubble is really high.
+                    .w-100.card-footer.p-0.bg-light.border.border-bottom-0.border-left-0.border-right-0
+                    form.m-0.p-0(action='' method='POST' autocomplete='off')
+                        .row.m-0.p-0
+                        .col-9.m-0.p-1
+                            input#text.mw-100.border.rounded.form-control(type='text' name='text' title='Type a message...' placeholder='Type a message...' required='')
+                        .col-3.m-0.p-1
+                            button.btn.btn-outline-secondary.rounded.border.w-100(title='Gönder!' style='padding-right: 16px;')
+                            i.fa.fa-paper-plane(aria-hidden='true')

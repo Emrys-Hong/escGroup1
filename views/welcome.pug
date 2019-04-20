@@ -1,0 +1,72 @@
+//- - var count =1
+//- doctype html
+//- html(lang='en')
+//-     include common/header.pug
+//-     +header(title)
+//-     body
+//-         header
+//-         include common/navbar.pug
+//-         +navbar(user)
+		
+		
+//-         .container
+//-             br
+//-             include common/carousel.pug
+//-             +carousel(title)
+//-             style.
+//-                 .carousel-inner > .item > img{
+//-                 width: 100%;
+//-                 margin: auto;
+//-                 }
+        
+
+
+//-     include common/footer.pug
+//-     +footer()
+
+doctype html
+html(lang='en')
+  include common/header.pug
+  title=title
+  +header(title)
+  body
+  head
+    include common/navbar.pug
+    +navbar(user)
+    .container-fixed
+      .bd-example
+        include common/carousel.pug
+        +carousel()
+    include common/footer.pug
+    +footer()
+    
+
+    //- .container-fluid
+    //-     link#bootstrap-css(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' rel='stylesheet')
+    //-     link(href='/public/stylesheets/chatstyle.css')
+    //-     script(src='//code.jquery.com/jquery-1.11.1.min.js')
+    //-     script(src='/public/javascripts/staticchat.js')
+    //-     script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
+        
+        
+    //-     // ---- Include the above in your HEAD tag --------
+    //-     .chat_window
+    //-     .top_menu
+    //-         .buttons
+    //-         .button.close
+    //-         .button.minimize
+    //-         .button.maximize
+    //-         .title Chat
+    //-     ul.messages
+    //-     .bottom_wrapper.clearfix
+    //-         .message_input_wrapper
+    //-         input.message_input(placeholder='Type your message here...')
+    //-         .send_message
+    //-         .icon
+    //-         .text Send
+    //-     .message_template
+    //-     li.message
+    //-         .avatar
+    //-         .text_wrapper
+    //-         .text
+

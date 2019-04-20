@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  include ../common/header.pug
+  +header(title)
+  body
+    header
+    include ../common/navbar.pug
+    +navbar(user)
+    .container
+      .row
+        .col-sm-12.offset-md-2.col-md-8
+          .jumbotron
+            .row
+              .col-sm-12.col-md-12.col-xs-12
+                form(action='/users/change_email', method='POST')
+                  div.formgroup
+                    label.small.mb-1.mt-3 Email: 
+                    input(placeholder='e.g. email@domain.com',required=true, name='email',type='email',value=user.email).form-control
+                    button.mt-3.btn.btn-primary(type='submit') Confirm Email
+
+    include ../common/footer.pug
+    +footer()

@@ -1,0 +1,48 @@
+doctype html
+html(lang='en')
+  include ../common/header.pug
+  +header(title)
+  body
+    header
+      include ../common/navbar.pug
+      +navbar()
+      .container
+        .row
+          .col-sm-12.offset-md-2.col-md-8
+            .jumbotron
+              h2.text-center Sign up!
+              .row
+                .col-sm-12.col-md-12.col-xs-12
+                  form(action='/users/signup', method='POST')
+                    div.formgroup
+                      label.small.mb-1.mt-3 Email: 
+                      input(placeholder='e.g. jem_ng@hotmail.com',required=true, name='email',type='email',value=formData.email).form-control
+                      if (errors && errors.email)
+                        p#err_email.small.text-danger #{errors.email}
+                      label.small.mb-1.mt-3 First Name: 
+                      input(placeholder='e.g. Jeremy',required=true, name='firstName',type='text',value=formData.firstName).form-control
+                      if (errors && errors.firstName)
+                        p#err_firstName.small.text-danger #{errors.firstName}
+                      label.small.mb-1.mt-3 Last Name: 
+                      input(placeholder='e.g. Ng',required=true, name='lastName',type='text',value=formData.lastName).form-control
+                      if (errors && errors.lastName)
+                        p#err_lastName.small.text-danger #{errors.lastName}
+                      label.small.mb-1.mt-3 Phone Number: 
+                      input(placeholder='e.g. 91234567',required=true, name='phoneNumber',type='text',value=formData.phoneNumber).form-control
+                      if (errors && errors.phoneNumber)
+                        p#err_phoneNumber.small.text-danger #{errors.phoneNumber}
+                      label.small.mb-1.mt-3 Password: 
+                      input(placeholder='New Password',required=true, name='password', type='password',value='').form-control
+                      if (errors && errors.password)
+                        p#err_password.small.text-danger #{errors.password}
+                      label.small.mb-1.mt-3 Confirm Password:
+                      input(placeholder='Confirm password',required=true, name='password2', type='password',value='').form-control
+                      if (errors && errors.password2)
+                        p#err_password2.small.text-danger #{errors.password2}
+                      button.mt-3.btn.btn-primary(type='submit') Sign up
+                      p.mt-2.mb-0 
+                        | Already have an account? #[a(href="/users/login") Log in here].
+          
+    include ../common/footer.pug
+    +footer()
+    //- script(src="/javascripts/leads.js")

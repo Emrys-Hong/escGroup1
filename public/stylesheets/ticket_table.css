@@ -1,0 +1,19 @@
+table#tickets {
+    border-collapse: collapse;   
+}
+#tickets tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#tickets tr:hover {
+    background-color: #ccc;
+}
+#tickets th {
+    background-color: #fff;
+}
+#tickets th, #tickets td {
+    padding: 3px 5px;
+}
+#tickets td:hover {
+    cursor: pointer;
+}

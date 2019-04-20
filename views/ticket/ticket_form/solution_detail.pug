@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  include ../../common/header.pug
+  +header(title)
+  body
+    header
+      include ../../common/navbar.pug
+      +navbar(user)
+      .container-fluid
+        .row.align-items-center
+          .col-md-10.order-md-1.text-center.text-md-left
+            h1 Question
+            | !{question}
+            | 
+            h2 Answers
+            | !{answer}
+
+                  
+
+
+    include ../../common/footer.pug
+    +footer()

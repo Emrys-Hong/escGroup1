@@ -1,0 +1,82 @@
+doctype html
+html(lang='en')
+  include ../../common/header.pug
+  +header(title)
+  body
+    header
+
+      script(src='https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ld4nt2kua9tevpu1bdsjmargql8oksngzmeps4cqup50heof')
+      script.
+        ClassicEditor
+          .create( document.querySelector( '#editor' ) )
+          .catch( error => {
+              console.error( error );
+          } );
+      include ../../common/navbar.pug
+      +navbar(user)
+      .container
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            br
+            .progress
+              .progress-bar.bg-warning.progress-bar-striped.progress-bar-animated(role='progressbar' style='width: 66.7%;' aria-valuenow='60' aria-valuemin='0' aria-valuemax='90') Step 2
+            br
+            h1.display-7.m-b-2 Solutions
+            br 
+            
+            table.table
+              thread
+              tr
+                th(scope="col")
+                th(scope="col") Here are the questions that previous users have asked:
+              tr
+              tbody
+                tr
+                  th(scope='row') 1
+                  td
+                    a(href="/solution_detail?id=" + solution.first.id) #{solution.first.title}
+                tr
+                  th(scope='row') 2
+                  td
+                    a(href="/solution_detail?id=" + solution.second.id) #{solution.second.title}
+                tr
+                  th(scope='row') 3
+                  td 
+                    a(href="/solution_detail?id=" + solution.third.id) #{solution.third.title}
+                tr
+                  th(scope='row') 4
+                  td 
+                    a(href="/solution_detail?id=" + solution.fourth.id) #{solution.fourth.title}
+                tr
+                  th(scope='row') 5
+                  td 
+                    a(href="/solution_detail?id=" + solution.fifth.id) #{solution.fifth.title}
+
+
+            //- // register form
+            //- a(href="/solution_detail?id=" + solution.first.id) #{solution.first.title}
+            //- | 
+            //- a(href="/solution_detail?id=" + solution.second.id) #{solution.second.title}
+            //- | 
+            //- a(href="/solution_detail?id=" + solution.third.id) #{solution.third.title}
+            //- | 
+            //- a(href="/solution_detail?id=" + solution.fourth.id) #{solution.fourthtitle}
+            //- | 
+            //- a(href="/solution_detail?id=" + solution.fifth.id) #{solution.fifth.title}
+            
+            br
+            h5 Solutions not useful?
+          
+            h6 Click here to submit a ticket.
+            a.btn.btn-outline-dark.btn-block(href="/ticket_form/details" role='button') Ticket Submission
+            //a#btn_ticket-form.nav-link(href="/ticket_form/details") Next: details
+            br
+            h6 Click here to ask another question.
+            a.btn.btn-outline-dark.btn-block(href="/ticket_form/basics" role='button') Ask Another Question
+            //a#btn_ticket-form.nav-link(href="/ticket_form/basics") previous: basics
+
+    include ../../common/footer.pug
+    +footer()
+    //- script(src="../javascripts/tickets.js")
+
+

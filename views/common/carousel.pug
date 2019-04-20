@@ -1,0 +1,64 @@
+mixin carousel()
+  style.
+    .carousel{
+      min-height: 100px;
+      height: 91vh;
+      min-width: 100vw;
+      background-position: center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+    
+    }
+    .carousel-img-width {
+      min-height: 60vh;
+      min-width:100vw;
+    }
+    .carousel .item {
+      height: 300px;
+    }
+
+    .item img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-height: 30px;
+    }
+    .carousel-inner{
+        height:100%;
+        object-fit: contain;
+    }
+  #carouselExampleCaptions.carousel.slide(data-ride='carousel')
+    ol.carousel-indicators
+      li.active(data-target='#carouselExampleCaptions', data-slide-to='0')
+      li(data-target='#carouselExampleCaptions', data-slide-to='1')
+      li(data-target='#carouselExampleCaptions', data-slide-to='2')
+      li(data-target='#carouselExampleCaptions', data-slide-to='3')
+    .carousel-inner
+      .carousel-item.active
+        img.d-block.w-100(src='/images/carousel/slide6.jpg', alt='...')
+        .carousel-caption.d-none.d-md-block
+          h3 First slide label
+          p Nulla vitae elit libero, a pharetra augue mollis interdum.
+      .carousel-item
+        img.d-block.w-100(src='/images/carousel/slide5.png', alt='...')
+        .carousel-caption.d-none.d-md-block
+          h3 Second slide label
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      .carousel-item
+        img.d-block.w-100(src='/images/carousel/slide7.jpg', alt='...')
+        .carousel-caption.d-none.d-md-block
+          h3 Third slide label
+          p Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+      .carousel-item
+        img.d-block.w-100(src='/images/carousel/slide8.jpg', alt='...')
+        .carousel-caption.d-none.d-md-block
+          h3 Third slide label
+          p Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+    a.carousel-control-prev(href='#carouselExampleCaptions', role='button', data-slide='prev')
+      span.carousel-control-prev-icon(aria-hidden='true')
+      span.sr-only Previous
+    a.carousel-control-next(href='#carouselExampleCaptions', role='button', data-slide='next')
+      span.carousel-control-next-icon(aria-hidden='true')
+      span.sr-only Next

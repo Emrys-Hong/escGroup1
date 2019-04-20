@@ -1,10 +1,51 @@
-mixin navbar()
-    nav.navbar.navbar-expand.navbar-light.bg-light
-      a(href="/", aria-label="Golden Goose").navbar-brand.mr-0.mr-md2
-        img(src="/images/golden-goose.jpg", width="36", height="36")
-      .collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item
-            a.nav-link(href="/") Home
-          li.nav-item
-            a.nav-link(href="/leads") Leads
+mixin navbar(user)
+  //- link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+  //- script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
+  //- script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous")
+  //- script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous")
+
+  nav.navbar.navbar-expand.navbar-dark.bg-dark(data-spy="affix")
+    a(href="/", aria-label="Accenture Homepage").navbar-brand.mr-0.mr-md2
+      img(src="/images/navbar/accenture.png", width="40", height="40" style=" padding: 0px 00px 0px 0px")
+    .collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          a#btn_home.nav-link(href="/" data-toggle="tooltip" data-placement="bottom" title="Home Page") 
+            img(src='/images/navbar/homewhite.png', width="30", height="30" style="padding: 0 0 0 0")
+        li.nav-item
+          a#btn_tickets.nav-link(href="/tickets" data-toggle="tooltip" data-placement="bottom" title="Your Tickets") 
+            img(src='/images/navbar/bookwhite.png', width="30", height="30")
+        li.nav-item
+          a#btn_ticket-form.nav-link(href="/ticket_form/basics" data-toggle="tooltip" data-placement="bottom" title="Questions") 
+            img(src='/images/navbar/helpwhite.png', width="30", height="30")
+        li.nav-item
+          a#btn_chat.nav-link(href='/room' target="_blank" ata-toggle="tooltip" data-placement="bottom" title="Chat with Admin now!") 
+            img(src='/images/navbar/chatwhite.png', width="30", height="30")
+        li.nav-item
+          a#btn_consultant.nav-link(href='/consultant' data-toggle="tooltip" data-placement="bottom" title="Meet The Consultants") 
+            img(src='/images/navbar/consultantwhite.png', width="30", height="30")
+    
+    .navbar-right
+      if user
+        if user.is_admin
+          ul.navbar-nav.mr-auto  
+            li.nav-item.dropdown
+              a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") 
+                | #{user.firstName} (ADMIN)
+                span.caret
+              .dropdown-menu(aria-labelledby="navbarDropdownMenuLink") 
+                a#btn_logout.dropdown-item(href="/users/logout") Logout
+        else
+          ul.navbar-nav.mr-auto  
+            li.nav-item.dropdown
+              a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") 
+                | #{user.firstName} (ADMIN)
+              .dropdown-menu(aria-labelledby="navbarDropdownMenuLink") 
+                a#btn_logout.dropdown-item(href="/users/logout") Logout
+      else
+        .navbar-right
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a#btn_signup.nav-link(href="/users/signup") Sign up
+            li.nav-item
+              a#btn_login.nav-link(href="/users/login") Login

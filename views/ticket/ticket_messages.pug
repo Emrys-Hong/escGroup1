@@ -1,0 +1,67 @@
+doctype html
+html(lang='en')
+  include ../common/header.pug
+  +header(title)
+  body
+    header
+      style.
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        .portrait {
+          height: 80px;
+          width: 30px;
+        }
+
+        .landscape {
+          height: 30px;
+          width: 80px;
+        }
+
+        .square {
+          height: 75px;
+          width: 75px;
+        }
+      include ../common/navbar.pug
+      +navbar(user)
+      .container-fluid
+        .row.align-items-start
+          .col
+            h1 tickets
+            .table-responsive
+              table.table
+                thead.thead-dark
+                  tr
+                    th(scope="col" style="width:15%") #{ticket.title} 
+                    th(scope="col" style="width:85%")
+                tbody
+                  for message in ticket.messages
+                    - var bgColor = "bebebe";
+                    if (message.is_admin)
+                      - bgColor = "edff54";
+                    tr(id=ticket.ticketId)
+                      td
+                        span #{message.fullname}
+                        br
+                        span #{message.email}
+                        br
+                        span #{message.phoneNumber}
+                      td(bgcolor=bgColor style="word-wrap: break-word;min-width: 160px;max-width: 160px;")
+                        .box.sb2
+                          span!=message.content
+            
+            form(action="/tickets/" + user.userId + "/" + ticket.ticketId, method="POST")
+              em
+                strong 
+                  .input-group.mb-3
+                    textarea#content.form-control(name='content', placeholder='Enter your response here' rows="4")
+                    .input-group-append
+                      button.btn.btn-outline-dark(type='submit') Submit
+            
+
+
+    include ../common/footer.pug
+    +footer()
+    script(src="/javascripts/Counter.js")

@@ -1,1 +1,7 @@
-node-modules
+.env
+node_modules
+logfile
+POST/
+./DS_Store
+**/.DS_Store
+public/users/

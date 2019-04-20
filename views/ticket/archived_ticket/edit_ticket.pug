@@ -1,0 +1,24 @@
+doctype html
+html(lang='en')
+  include ../common/header.pug
+  +header("Tickets")
+  body
+    header
+      include ../common/navbar.pug
+      +navbar(user)
+      .container
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            h1 Edit ticket
+            form(action="/", method="POST")
+              .input-group.mb-3
+                input(name="ticket_email", value=ticket.email, type="email", placeholder="Enter your email address").form-control
+                .input-group-append
+                  button(type="submit").btn.btn-primary Save
+
+
+    include ../common/footer.pug
+    +footer()
+    //- script(src="../javascripts/tickets.js")
+
+

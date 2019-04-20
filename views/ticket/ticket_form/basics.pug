@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+  include ../../common/header.pug
+  +header(title)
+  body
+    head
+      script(src='https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ld4nt2kua9tevpu1bdsjmargql8oksngzmeps4cqup50heof')
+      script.
+        ClassicEditor
+          .create( document.querySelector( '#editor' ) )
+          .catch( error => {
+              console.error( error );
+          } );
+      include ../../common/navbar.pug
+      +navbar(user)
+
+      .container
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            - let topics = ["Python", "C++", "Java", "Go", "Android Studio", "Javascript", "C"];
+            br
+            .progress
+              .progress-bar.bg-warning.progress-bar-striped.progress-bar-animated(role='progressbar' style='width: 33.3%;' aria-valuenow='30' aria-valuemin='0' aria-valuemax='90') Step 1
+            br
+            h1.display-8.m-b-2 Ticket Form
+            br
+            // register form
+            form(action='/ticket_form/basics', method='POST')
+              div.form-group
+                label(for='topic') Issue Type:
+              select(name='topic')
+                each topic in topics
+                  option#topic.form-control(value=topic) #{topic}
+              div.form-group
+                label(for='q') Description:
+                textarea#editor.form-control(name='q_content',type='text', placeholder='In a few words, describe your issue',maxlength="4000", wrap="soft", row="10")
+                
+              button.btn.btn-outline-dark(type='submit') Solutions
+
+    include ../../common/footer.pug
+    +footer()
+    //- script(src="../javascripts/tickets.js")
+
+

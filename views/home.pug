@@ -1,0 +1,21 @@
+doctype html
+html(lang='en')
+  include common/header.pug
+  +header(title)
+  body
+    header
+      include common/navbar.pug
+      +navbar(user)
+      .container
+        .row.align-items-center
+          .col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+            include common/carousel.pug
+            +carousel(title)
+            a(href="/", aria-label="Accenture Homepage").navbar-brand.mr-0.mr-md2
+              img(src="/images/homepage_Accenture.png")
+              br
+            h1 Welcome to ACNAPI Portal
+          
+    include common/footer.pug
+    +footer()
+    //- script(src="/javascripts/tickets.js")

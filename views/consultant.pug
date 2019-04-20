@@ -1,0 +1,85 @@
+doctype html
+head
+  title Bootstrap 4 Website Example
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+  style.
+    .fakeimg {
+    height: 200px;
+    background: #aaa;
+    }
+  include common/navbar.pug
+  +navbar(user)
+.container(style='margin-top:30px')
+  h2
+    u About Us:
+  .row
+    .col-sm-4
+      img(align='center' src='/images/aboutConsultant/ChelzP.png' alt='Sorry image cannot be displayed.' width='200' height='250' style='display:block;')
+      a(align='center')
+        p(style='padding-right:150px')
+          | Chelsea
+          br
+          |  Vice President, Technology Consulting
+      h3(style='font-size:20px') Related Links
+      table(border='0' cellpadding='0' cellspacing='0')
+        tr
+          td
+            a(href='https://www.linkedin.com/in/chelsea-foo-shu-qi/')
+              img(src='/images/aboutConsultant/social-linkedin.svg' alt='Linkedin' width='38' height='38' style='display: block;' border='0')
+          td
+            a(href='https://www.instagram.com/accenture/?hl=en')
+              img(src='/images/aboutConsultant/instagram.png' alt='Instagram' width='45' height='45' style='display: block;' border='0')
+          td
+            a(href='https://www.facebook.com/accenture/')
+              img(src='/images/aboutConsultant/social-facebook.svg' alt='Facebook' width='38' height='38' style='display: block;' border='0')
+      hr.d-sm-none
+    .col-sm-8
+      h2 Bio
+      h5 Accreditations:
+      .card(style='height:250px')
+        .card-body(style='font-family: Arial, sans-serif; font-size:15px; ')
+          b
+            | -Part Time Hibernator
+            br
+            |                         -Full Time Handicap
+            br
+      p Sleeps alot.
+      br
+.container(style='margin-top:30px')
+  .row
+    .col-sm-4
+      img(align='center' src='/images/aboutConsultant/PFPor.png' alt='Sorry image cannot be displayed.' width='200' height='270' style='display:block;')
+      a(align='center')
+        p(style='padding-right:150px')
+          | Peng Fei
+          br
+          |  Vice President, Technology Consulting
+      h3(style='font-size:20px') Related Links
+      table(border='0' cellpadding='0' cellspacing='0')
+        tr
+          td
+            a(href='https://www.linkedin.com/in/peng-fei-hong-530896157/')
+              img(src='/images/aboutConsultant/social-linkedin.svg' alt='Linkedin' width='38' height='38' style='display: block;' border='0')
+          td
+            a(href='https://www.instagram.com/accenture/?hl=en')
+              img(src='/images/aboutConsultant/instagram.png' alt='Instagram' width='45' height='45' style='display: block;' border='0')
+          td
+            a(href='https://www.facebook.com/accenture/')
+              img(src='/images/aboutConsultant/social-facebook.svg' alt='Facebook' width='38' height='38' style='display: block;' border='0')
+      hr.d-sm-none
+    .col-sm-8
+      h2 Bio
+      h5 Accreditations:
+      .card(style='height:250px')
+        .card-body(style='font-family: Arial, sans-serif; font-size:15px; ')
+          b
+            | -Machine Learning
+            br
+      p Codes alot.
+      br
+

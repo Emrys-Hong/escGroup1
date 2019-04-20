@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for escGroup1/middleware/email.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">escGroup1/middleware</a> email.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/7</span>
+      </div>
+    </div>
+    <p class="quiet">
+      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+    </p>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var request = <span class="cstat-no" title="statement not covered" >require('request');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >exports.send_email = <span class="fstat-no" title="function not covered" >fu</span>nction(req, res, next) {</span>
+    var options = <span class="cstat-no" title="statement not covered" >{ method: 'POST',</span>
+    url: process.env.SEND_EMAIL_URL,
+    headers: 
+     { 'Postman-Token': process.env.POSTMAN_TOKEN,
+       'cache-control': 'no-cache',
+       Authorization: 'Bearer ' + process.env.SERVER_TOKEN,
+       'Content-Type': 'application/json',
+       'Server-Token': process.env.SERVER_TOKEN },
+    body: 
+     { subject: 'test subject using ACNAPI',
+       sender: 'admin@accenture.com',
+       recipient: 'jeremy_ng@mymail.sutd.edu.sg', // req.user.email -- we can use this to send to clients' email too! :)
+       html: '&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt; &lt;head&gt; &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/&gt; &lt;title&gt;Accenture&lt;/title&gt; &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;&lt;/head&gt; &lt;body style="margin: 0; padding:0;"&gt; &lt;table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border: 1px solid #cccccc;"&gt; &lt;tr&gt; &lt;td align="center" bgcolor=" #F0F0F0 " style="padding: 0px 0 0px 0;"&gt; &lt;img src="http://escgroup1.herokuapp.com/Accenture-logo.png" alt="Sorry image cannot be displayed." width="300" height="150" style="display:block;"/&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt; &lt;td bgcolor="#ffffff" style="padding: 10px 30px 40px 30px ;font-family: Arial, sans-serif;"&gt; &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt; &lt;tr&gt; &lt;td align="center" paddint-bottom="10px"&gt; &lt;img src="http://escgroup1.herokuapp.com/portrait.png" alt="Sorry image cannot be displayed." width="150" height="100" style="display:block;"/&gt; &lt;font size=3px&gt;&lt;a href="http://www.linkedin.com/in/chin-tak-ong-6b2a75145" style="color: #000000;"&gt;&lt;font color="#4C84E9"&gt;&lt;/font&gt;&lt;b&gt;Ong Chin Tak &lt;br&gt;Vice President, Tech Consulting&lt;/b&gt;&lt;/font&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt; &lt;td style="padding:20px 0 0 0;color: #153643; font-family: Arial, sans-serif;font-size: 18px; "&gt; &lt;b&gt;Dear User,&lt;/b&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt; &lt;td style="color: #153643; font-family: Arial, sans-serif;font-size: 14px; padding: 10px 0 20px 0"&gt; &lt;b&gt; Your ticket request has been answered by our technical consultant Chin Tak. Please log in &lt;a href="http://escgroup1.herokuapp.com/" style="color: #000000;"&gt;&lt;font color="#4C84E9"&gt; here &lt;/font&gt;&lt;/a&gt; to view the response! &lt;/b&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt; &lt;td bgcolor="#F0F0F0 " style="padding: 10px 30px 10px 30px;"&gt; &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt; &lt;tr&gt; &lt;td width="75%"" align="left" style="color: #000000; font-family: Arial, sans-serif; font-size: 14px;"&gt; Accenture 2019 &amp;reg; All rights reserved.&lt;br/&gt; &lt;a href="http://escgroup1.herokuapp.com/" style="color: #000000;"&gt;&lt;font color="#4C84E9"&gt; Unsubscribe&lt;/font&gt;&lt;/a&gt; from our newsletter instantly &lt;/td&gt;&lt;td align="right"&gt; &lt;table border="0" cellpadding="0" cellspacing="0"&gt; &lt;tr&gt; &lt;td&gt; &lt;a href="https://www.facebook.com/accenture/"&gt; &lt;img src="http://escgroup1.herokuapp.com/social-facebook.svg" alt="Facebook" width="38" height="38" style="display: block;" border="0"/&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &lt;a href="https://twitter.com/Accenture?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"&gt; &lt;img src="http://escgroup1.herokuapp.com/social-twitter.svg" alt="Twitter" width="38" height="38" style="display: block;" border="0"/&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &lt;a href="https://www.instagram.com/accenture/?hl=en"&gt; &lt;img src="http://escgroup1.herokuapp.com/instagram.png" alt="Instagram" width="45" height="45" style="display: block;" border="0"/&gt; &lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; &lt;/body&gt;&lt;/html&gt;' }, // test
+    json: true };
+  
+<span class="cstat-no" title="statement not covered" >    request(options, <span class="fstat-no" title="function not covered" >fu</span>nction (error, response, body) {</span>
+<span class="cstat-no" title="statement not covered" >      if (error) <span class="cstat-no" title="statement not covered" >throw new Error(error);</span></span>
+  
+<span class="cstat-no" title="statement not covered" >      console.log(body);</span>
+    });
+<span class="cstat-no" title="statement not covered" >    return next();</span>
+  }</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Apr 12 2019 12:05:13 GMT+0800 (Singapore Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+<script src="../../block-navigation.js"></script>
+</body>
+</html>

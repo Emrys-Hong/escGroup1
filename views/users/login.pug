@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+  include ../common/header.pug
+  +header(title)
+  body
+    header
+    include ../common/navbar.pug
+    +navbar(user)
+    .container
+      .row
+        .col-sm-12.offset-md-2.col-md-8
+          .jumbotron
+            h2.text-center Login
+            .row
+              .col-sm-12.col-md-12.col-xs-12
+                form(action='/users/login', method='POST')
+                  div.formgroup
+                    if (errors && errors.credentials)
+                      p#err_email.small.text-danger #{errors.credentials}
+                    label.small.mb-1.mt-3 Email:
+                    input(placeholder='Enter your email',required=true, name='email',type='email',value=formData.email).form-control
+                    label.small.mb-1.mt-3 Password:
+                    input(placeholder='Enter your password',required=true, name='password', type='password',value='').form-control
+                    button.mt-3.btn.btn-primary(type='submit') Log in
+                    p.mt-2.mb-0
+                      | Forgot your password? #[a(href="/users/forgot_password") Reset here].
+                    p.m-0
+                      | Don't have an account? #[a(href="/users/signup") Sign up here].
+    include ../common/footer.pug
+    +footer()

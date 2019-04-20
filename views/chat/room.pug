@@ -1,0 +1,26 @@
+doctype html
+//
+  This file is rendered by express.js, when the home url of the chat is opened in a browser.
+  It doesn't do much, except showing the create button for the chat.
+head
+  title Accenture Private Chat | make your life efficient
+  link(type='text/css' rel='stylesheet' href='stylesheets/stylesheet.css')
+  link(href='http://fonts.googleapis.com/css?family=Open+Sans Condensed:300italic,300,700' rel='stylesheet' type='text/css')
+  //- include ../common/header.pug
+  //- +header("Creat a chat room!")
+header.homebanner
+  h1.homebannertext
+    a#logo(href='/')
+    | Accenture Private 
+    span Chat
+  div(align='right')
+    a(href='/') back
+section
+  .homesection
+    .node
+      img#nodelogo(src='images/accenture.png' alt='nodelogo')
+      h2#chat powered web chat
+    a#create(title='Create' href='/select')
+      #createbutton
+        #little Create a Private
+        #big CHAT ROOM!
